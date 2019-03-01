@@ -30,6 +30,22 @@ Page({
     });
     //判断并读取缓存
     if(app.cache.cj){ cjRender(app.cache.cj); }
+
+    // 假数据
+    _this.setData({
+      remind: '',
+      cjInfo: [
+        { course_name: '高等数学', socres: 76 },
+        { course_name: '数据结构', socres: 6 }
+      ],
+      xqName: {
+        grade: '三',
+        semester: '下'
+      }
+    })
+    
+
+
     function cjRender(_data){
       var term = _data[0].term.trim();
       var xh = _data[0].xh;
@@ -50,44 +66,47 @@ Page({
         remind: ''
       });
     }
+
+
     wx.showNavigationBarLoading();
-    wx.request({
-      url: app._server + "/api/get_kscj.php",
-      method: 'POST',
-      data: app.key({
-        openid: app._user.openid,
-        id: app._user.we.info.id
-      }),
-      success: function(res) {
 
-        if(res.data && res.data.status === 200) {
-          var _data = res.data.data;
-          if(_data) {
-            //保存成绩缓存
-            app.saveCache('cj', _data);
-            cjRender(_data);
-          } else { _this.setData({ remind: '暂无数据' }); }
+    // wx.request({
+    //   url: app._server + "/api/get_kscj.php",
+    //   method: 'POST',
+    //   data: app.key({
+    //     openid: app._user.openid,
+    //     id: app._user.we.info.id
+    //   }),
+    //   success: function(res) {
 
-        } else {
-          app.removeCache('cj');
-          _this.setData({
-            remind: res.data.message || '未知错误'
-          });
-        }
+    //     if(res.data && res.data.status === 200) {
+    //       var _data = res.data.data;
+    //       if(_data) {
+    //         //保存成绩缓存
+    //         app.saveCache('cj', _data);
+    //         cjRender(_data);
+    //       } else { _this.setData({ remind: '暂无数据' }); }
 
-      },
-      fail: function(res) {
-        if(_this.data.remind == '加载中'){
-          _this.setData({
-            remind: '网络错误'
-          });
-        }
-        console.warn('网络错误');
-      },
-      complete: function() {
-        wx.hideNavigationBarLoading();
-      }
-    });
+    //     } else {
+    //       app.removeCache('cj');
+    //       _this.setData({
+    //         remind: res.data.message || '未知错误'
+    //       });
+    //     }
+
+    //   },
+    //   fail: function(res) {
+    //     if(_this.data.remind == '加载中'){
+    //       _this.setData({
+    //         remind: '网络错误'
+    //       });
+    //     }
+    //     console.warn('网络错误');
+    //   },
+    //   complete: function() {
+    //     wx.hideNavigationBarLoading();
+    //   }
+    // });
 
     function changeNum(num){  
       var china = ['零','一','二','三','四','五','六','七','八','九'];
@@ -98,6 +117,7 @@ Page({
       }  
       return arr.join("")  
     }  
+
 
 
   }

@@ -198,6 +198,7 @@ App({
   cache: {},
   // _server: 'https://we.cqu.pt',
   _server: 'http://106.13.53.42',
+  // _server: 'http://127.0.0.1:8000',
   _user: {
     //微信数据
     wx: {},

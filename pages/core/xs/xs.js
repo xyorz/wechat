@@ -62,7 +62,47 @@ Page({
       'main.message': '上滑加载更多',
       'testData': []
     });
-    this.search();
+    // 调用后台API处
+    // this.search();
+
+    // 写入假数据，假装调用了后台API
+    this.setData({
+      main: {
+        total: 10,
+      },
+      testData: [
+        {
+          headImg: '/images/more/about.png',
+          activeName: '海星',
+          normalXm: 'normalXm',
+          activeXh: '1600000',
+          normalXh: 'normalXh',
+          xb: '男',
+          yxm: '计算机学院',
+          zym: '软件工程',
+          nj: '2016',
+          bj: '软x',
+          xm: '姓名',
+          xh: '学号',
+          message: 'message'
+        },
+        {
+          headImg: '/images/more/about.png',
+          activeName: '海星',
+          normalXm: 'normalXm',
+          activeXh: '1600000',
+          normalXh: 'normalXh',
+          xb: '男',
+          yxm: '计算机学院',
+          zym: '软件工程',
+          nj: '2016',
+          bj: '软x',
+          xm: '姓名',
+          xh: '学号',
+          message: 'message'
+        }
+      ],
+    })
   },
 
   // 上滑加载更多

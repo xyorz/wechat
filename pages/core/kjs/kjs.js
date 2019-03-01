@@ -49,7 +49,21 @@ Page({
       'active.weekNo': app._time.week
     });
     // 初始默认显示
-    this.sendRequest();
+    // this.sendRequest();
+
+    // 假数据
+    this.setData({
+      'errObj.errorDisplay': true,
+      testData: [
+        { room: ['101', '202']},
+        { room: ['101', '202']},
+        { room: ['101', '202'] },
+        { room: ['101', '202', '202', '202', '202', '206', '222'] },
+      ]
+    })
+
+    // request数据：{"weekNo":2,"weekDay":1,"classNo":"1@2@9@10","buildingNo":2,"openid":"o-R9p5GDBqxI2Dil6COlJ0cQZk_w"}
+
   },
 
   //下拉更新
@@ -87,6 +101,8 @@ Page({
 
       app.showErrorModal(message);
     }
+
+    console.log('app.key(requestData):'+JSON.stringify(requestData))
 
     // 发送请求
     wx.request({
