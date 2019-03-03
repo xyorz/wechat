@@ -142,7 +142,6 @@ App({
   //返回用户信息
   processData: function(key){
     var _this = this;
-    //解码参数(key)
     // var data = JSON.parse(_this.util.base64.decode(key));
     var data = JSON.parse(JSON.stringify(key))
     _this._user.is_bind = data.is_bind;
@@ -193,6 +192,7 @@ App({
     });
   },
   util: require('./utils/util'),
+  // data 为
   key: function(data){ return this.util.key(data) },
   enCodeBase64:function(data){ return this.util.base64.encode(data)},
   cache: {},

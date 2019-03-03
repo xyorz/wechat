@@ -367,7 +367,9 @@ Page({
     }
     wx.showNavigationBarLoading();
     //获取课表
+    console.log(data);
     wx.request({
+      // url: "http://106.13.53.42/get_kebiao.php",
       url: "http://106.13.53.42/get_kebiao/",
       method: 'POST',
       data: app.key(data),

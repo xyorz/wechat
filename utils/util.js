@@ -39,6 +39,12 @@ sign = function(data) {
   _data['\x74\x6f\x6b\x65\x6e'] = base64.decode(getApp()['\x5f\x74']);
   return md5(JSON.stringify(_data));
 },
+
+//data = {
+//  openid: app._user.openid,
+//  id: id,
+// };
+
 key = function(data) {
   if(!isPlainObject(data)){ return false; }
   data.timestamp = parseInt(new Date().getTime().toString().substr(0,10));

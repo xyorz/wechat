@@ -123,6 +123,7 @@ Page({
       }
       wx.showNavigationBarLoading();
       wx.request({
+          // url: app._server + "/get_yktcost.php",
           url: app._server + "/get_yktcost/",
           method: 'POST',
           data: app.key({
