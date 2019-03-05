@@ -14,7 +14,7 @@ Page({
       total: 0,
       sum: 0,
       page: 0,
-      message: '上滑加载更多'
+      // message: '上滑加载更多'
     },
     testData: [],
     messageObj: { // 查询失败的提示信息展示对象
@@ -29,7 +29,7 @@ Page({
       'main.total': 0,
       'main.sum': 0,
       'main.page': 0,
-      'main.message': '上滑加载更多',
+      // 'main.message': '上滑加载更多',
       'testData': [],
       'header.inputValue': ''
     });
@@ -41,7 +41,7 @@ Page({
       'main.total': 0,
       'main.sum': 0,
       'main.page': 0,
-      'main.message': '上滑加载更多',
+      // 'main.message': '上滑加载更多',
       'testData': []
     });
     if(!this.data.messageObj.messageDisplay){
@@ -59,58 +59,19 @@ Page({
       'main.total': 0,
       'main.sum': 0,
       'main.page': 0,
-      'main.message': '上滑加载更多',
+      // 'main.message': '上滑加载更多',
       'testData': []
     });
     // 调用后台API处
-    // this.search();
-
-    // 写入假数据，假装调用了后台API
-    this.setData({
-      main: {
-        total: 10,
-      },
-      testData: [
-        {
-          headImg: '/images/more/about.png',
-          activeName: '海星',
-          normalXm: 'normalXm',
-          activeXh: '1600000',
-          normalXh: 'normalXh',
-          xb: '男',
-          yxm: '计算机学院',
-          zym: '软件工程',
-          nj: '2016',
-          bj: '软x',
-          xm: '姓名',
-          xh: '学号',
-          message: 'message'
-        },
-        {
-          headImg: '/images/more/about.png',
-          activeName: '海星',
-          normalXm: 'normalXm',
-          activeXh: '1600000',
-          normalXh: 'normalXh',
-          xb: '男',
-          yxm: '计算机学院',
-          zym: '软件工程',
-          nj: '2016',
-          bj: '软x',
-          xm: '姓名',
-          xh: '学号',
-          message: 'message'
-        }
-      ],
-    })
+    this.search();
   },
 
   // 上滑加载更多
-  onReachBottom: function(){
-    if(this.data.main.message != '已全部加载' && this.data.main.message != '正在加载中'){
-      this.search();
-    }
-  },
+  // onReachBottom: function(){
+  //   if(this.data.main.message != '已全部加载' && this.data.main.message != '正在加载中'){
+  //     this.search();
+  //   }
+  // },
 
   // 搜索
   search: function (key) {
@@ -185,7 +146,7 @@ Page({
     // 处理成功返回的数据
     function doSuccess(data, messageDisplay) {
 
-      var rows = data.rows;
+      // var rows = data.rows;
       // 对数据进行自定义加工 给每个数据对象添加一些自定义属性
       function doData(data) {
 
@@ -254,7 +215,7 @@ Page({
           curXm = numberSign ? curData.xm : doXm(inputValue, curData.xm);
           curXh = !numberSign ? curData.xh : doXh(inputValue, curData.xh);
           curData.display = false; // 添加控制隐藏列表信息显示的标识
-          curData.headImg = curData.headImg || '/images/core/xs.png';
+          curData.headImg = '/images/core/xs.png';
           curData.activeName =  curXm.activeName || '';
           curData.activeXh =  curXh.activeXh || '';
           curData.normalXm =  numberSign ? curXm : curXm.xm;
@@ -264,7 +225,7 @@ Page({
         return data;
       }
      
-      reDdata = doData(rows);
+      reDdata = doData(data);
       
       // 若reDdata===false, 查询没有结果
       if (reDdata === false) {
@@ -272,10 +233,10 @@ Page({
       }
 
       that.setData({
-        'testData': that.data.testData.concat(reDdata),
+        'testData': data.testData,
         'main.mainDisplay': false,
         'main.total': data.total,
-        'main.sum': that.data.main.sum + data.rows.length,
+        // 'main.sum': that.data.main.sum + data.rows.length,
         'messageObj.messageDisplay': messageDisplay,
         'main.message': '上滑加载更多'
       });
@@ -308,13 +269,18 @@ Page({
     });
     app.showLoadToast();
     wx.request({
-      url: app._server + '/api/get_student_info.php',
+      // url: app._server + '/api/get_student_info.php',
+      url: app._server + '/get_student_info/',
       method: 'POST',
-      data: app.key({
+      // data: app.key({
+        // openid: app._user.openid,
+        // key: inputValue,
+        // page: that.data.main.page
+      // }),
+      data: {
         openid: app._user.openid,
         key: inputValue,
-        page: that.data.main.page
-      }),
+      },
       success: function(res) {
         
         if(res.data && res.data.status === 200) {

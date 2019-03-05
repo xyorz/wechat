@@ -59,10 +59,13 @@ Page({
       // url: app._server + "/api/get_books.php/",
       url: app._server + "/get_books/",
       method: 'POST',
-      data: app.key({
-        openid: app._user.openid,
+      // data: app.key({
+      //   openid: app._user.openid,
+      //   ykth: app._user.we.ykth
+      // }),
+      data: {
         ykth: app._user.we.ykth
-      }),
+      },
       success: function(res) {
         if(res.data && res.data.status === 200) {
           var info = res.data.data;

@@ -32,37 +32,37 @@ Page({
     if(app.cache.cj){ cjRender(app.cache.cj); }
 
     // 假数据
-    _this.setData({
-      remind: '',
-      cjInfo: [
-        { course_name: '高等数学', socres: 76 },
-        { course_name: '数据结构', socres: 6 }
-      ],
-      xqName: {
-        grade: '三',
-        semester: '下'
-      }
-    })
+    // _this.setData({
+    //   remind: '',
+    //   cjInfo: [
+    //     { course_name: '高等数学', socres: 76 },
+    //     { course_name: '数据结构', socres: 6 }
+    //   ],
+    //   xqName: {
+    //     grade: '三',
+    //     semester: '下'
+    //   }
+    // })
     
 
 
     function cjRender(_data){
-      var term = _data[0].term.trim();
-      var xh = _data[0].xh;
-      var year = term.slice(0,4);
-      var semester = term.slice(-3,-2);
-      var yearIn = xh.slice(0,4);
-      var xqName_grade = changeNum(year - yearIn + 1);
-      var xqName_semester = (semester == 1) ? '上' : '下';
-      var xqName = {
-        grade: xqName_grade,
-        semester: xqName_semester,
-        term: term
-      };
+      // var term = _data[0].term.trim();
+      // var xh = _data[0].xh;
+      // var year = term.slice(0,4);
+      // var semester = term.slice(-3,-2);
+      // var yearIn = xh.slice(0,4);
+      // var xqName_grade = changeNum(year - yearIn + 1);
+      // var xqName_semester = (semester == 1) ? '上' : '下';
+      // var xqName = {
+      //   grade: xqName_grade,
+      //   semester: xqName_semester,
+      //   term: term
+      // };
       
       _this.setData({
-        cjInfo: _data,
-        xqName: xqName,
+        cjInfo: _data.cjInfo,
+        xqName: _data.xqName,
         remind: ''
       });
     }
@@ -70,43 +70,48 @@ Page({
 
     wx.showNavigationBarLoading();
 
-    // wx.request({
-    //   url: app._server + "/api/get_kscj.php",
-    //   method: 'POST',
-    //   data: app.key({
-    //     openid: app._user.openid,
-    //     id: app._user.we.info.id
-    //   }),
-    //   success: function(res) {
+    wx.request({
+      // url: app._server + "/api/get_kscj.php",
+      url: app._server + "/get_kscj/",
+      method: 'POST',
+      // data: app.key({
+      //   openid: app._user.openid,
+      //   id: app._user.we.info.id
+      // }),
+      data: {
+        openid: app._user.openid,
+        id: app._user.we.info.id
+      },
+      success: function(res) {
 
-    //     if(res.data && res.data.status === 200) {
-    //       var _data = res.data.data;
-    //       if(_data) {
-    //         //保存成绩缓存
-    //         app.saveCache('cj', _data);
-    //         cjRender(_data);
-    //       } else { _this.setData({ remind: '暂无数据' }); }
+        if(res.data && res.data.status === 200) {
+          var _data = res.data.data;
+          if(_data) {
+            //保存成绩缓存
+            app.saveCache('cj', _data);
+            cjRender(_data);
+          } else { _this.setData({ remind: '暂无数据' }); }
 
-    //     } else {
-    //       app.removeCache('cj');
-    //       _this.setData({
-    //         remind: res.data.message || '未知错误'
-    //       });
-    //     }
+        } else {
+          app.removeCache('cj');
+          _this.setData({
+            remind: res.data.message || '未知错误'
+          });
+        }
 
-    //   },
-    //   fail: function(res) {
-    //     if(_this.data.remind == '加载中'){
-    //       _this.setData({
-    //         remind: '网络错误'
-    //       });
-    //     }
-    //     console.warn('网络错误');
-    //   },
-    //   complete: function() {
-    //     wx.hideNavigationBarLoading();
-    //   }
-    // });
+      },
+      fail: function(res) {
+        if(_this.data.remind == '加载中'){
+          _this.setData({
+            remind: '网络错误'
+          });
+        }
+        console.warn('网络错误');
+      },
+      complete: function() {
+        wx.hideNavigationBarLoading();
+      }
+    });
 
     function changeNum(num){  
       var china = ['零','一','二','三','四','五','六','七','八','九'];
@@ -117,8 +122,5 @@ Page({
       }  
       return arr.join("")  
     }  
-
-
-
   }
 });

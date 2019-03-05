@@ -46,12 +46,13 @@ Page({
     app.showLoadToast('绑定中');
     wx.request({
       method: 'POST',
-      url: app._server + '/api/users/bind.php',
-      data: app.key({
+      // url: app._server + '/api/users/bind.php',
+      url: app._server + '/bind/',
+      data: {
         openid: app._user.openid,
         yktid: _this.data.userid,
         passwd: _this.data.passwd
-      }),
+      },
       success: function(res){
         if(res.data && res.data.status === 200){
           app.showLoadToast('请稍候');

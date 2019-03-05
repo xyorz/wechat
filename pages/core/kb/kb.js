@@ -370,9 +370,10 @@ Page({
     console.log(data);
     wx.request({
       // url: "http://106.13.53.42/get_kebiao.php",
-      url: "http://106.13.53.42/get_kebiao/",
+      url: _this._server + "/get_kebiao/",
       method: 'POST',
-      data: app.key(data),
+      // data: app.key(data),
+      data: data,
       success: function(res) {
         if (res.data && res.data.status === 200){
           var _data = res.data.data;

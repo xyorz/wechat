@@ -5,7 +5,8 @@
   </view>
   <block wx:else>
     <image class="title" src="/images/more/title_w.png" mode="aspectFill"></image>
-    <view class="content">
+    <view class="content">456   hp
+    
    
       <view class="bd">
         <form class="login-form">

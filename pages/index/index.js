@@ -239,7 +239,7 @@ Page({
           list = [],
           time_list = _this.data.card.kb.time_list;
           // console.log(JSON.stringify(lessons))
-      for(var i = 0; i < 6; i++){
+      for(var i = 0; i < 5; i++){
         for(var j = 0; j < lessons[i].length; j++){
           var lesson = lessons[i][j];
           // console.log(JSON.stringify(lesson))
@@ -272,7 +272,8 @@ Page({
       // url: app._server + '/api/get_kebiao.php',
       url: app._server + '/get_kebiao/',
       method: 'POST',
-      data: app.key(kb_data),
+      // data: app.key(kb_data),
+      data: kb_data,
       success: function(res) {
         if(res.data && res.data.status === 200){
           var info = res.data.data;
@@ -333,10 +334,12 @@ Page({
       // url: app._server + '/api/get_yktcost.php',
       url: app._server + '/get_yktcost/',
       method: 'POST',
-      data: app.key({
-        // 一卡通号
+      // data: app.key({
+      //   yktID: app._user.we.ykth
+      // }),
+      data: {
         yktID: app._user.we.ykth
-      }),
+      },
       success: function(res) {
         if(res.data && res.data.status === 200){
           var list = res.data.data;
@@ -432,9 +435,12 @@ Page({
     wx.request({
       url: app._server + "/get_books/",
       method: 'POST',
-      data: app.key({
+      // data: app.key({
+        // ykth: app._user.we.ykth
+      // }),
+      data: {
         ykth: app._user.we.ykth
-      }),
+      },
       success: function(res) {
         if(res.data && res.data.status === 200){
           var info = res.data.data;

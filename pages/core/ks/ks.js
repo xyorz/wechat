@@ -41,50 +41,50 @@ Page({
   onLoad: function(options){
     var _this = this;
     app.loginLoad(function(){
-      // _this.loginHandler.call(_this, options);
+      _this.loginHandler.call(_this, options);
     });
 
     // 假数据
-    _this.setData({
-      'remind': '',
-      'ks': {
-        ksName: '期末考试',
-      },
-      'id': '1600000',
-      'name': '小明',
-      'list':[
-        {
-          open: true,
-          type: '笔试',
-          course: '数据结构',
-          // countdown: 2,
-          place: '1教',
-          date: '11-11',
-          week: 5,
-          day: 6,
-          time: '11:00 - 13:00',
-          lesson: '5-7节',
-          room: '1教500',
-          number: '65',
-          teacher: '王'
-        },
-        {
-          open: true,
-          type: '期中',
-          course: '数据结构',
-          // countdown: 2,
-          place: '1教',
-          date: '11-11',
-          week: 5,
-          day: 6,
-          time: '11:00 - 13:00',
-          lesson: '5-7节',
-          room: '1教500',
-          number: '65',
-          teacher: '王'
-        }
-      ]
-    })
+    // _this.setData({
+    //   'remind': '',
+    //   'ks': {
+    //     ksName: '期末考试',
+    //   },
+    //   'id': '1600000',
+    //   'name': '小明',
+    //   'list':[
+    //     {
+    //       open: true,
+    //       type: '笔试',
+    //       course: '数据结构',
+    //       // countdown: 2,
+    //       place: '1教',
+    //       date: '11-11',
+    //       week: 5,
+    //       day: 6,
+    //       time: '11:00 - 13:00',
+    //       lesson: '5-7节',
+    //       room: '1教500',
+    //       number: '65',
+    //       teacher: '王'
+    //     },
+    //     {
+    //       open: true,
+    //       type: '期中',
+    //       course: '数据结构',
+    //       // countdown: 2,
+    //       place: '1教',
+    //       date: '11-11',
+    //       week: 5,
+    //       day: 6,
+    //       time: '11:00 - 13:00',
+    //       lesson: '5-7节',
+    //       room: '1教500',
+    //       number: '65',
+    //       teacher: '王'
+    //     }
+    //   ]
+    // })
   },
   //让分享时自动登录
   loginHandler: function(options){
@@ -161,9 +161,13 @@ Page({
     }
     wx.showNavigationBarLoading();
     wx.request({
-      url: app._server + "/api/get_ks.php",
+      // url: app._server + "/api/get_ks.php",
+      url: app._server + "/get_ks/",
       method: 'POST',
-      data: app.key(data),
+      // data: app.key(data),
+      data: {
+        id: id
+      },
       success: function(res) {
         if (res.data && res.data.status === 200){
           var list = res.data.data;

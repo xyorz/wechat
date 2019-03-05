@@ -8,7 +8,6 @@
         </block>
     </view>
     <block wx:else>
-
         <!-- 主体 -->
         <view class="main-box {{blur?'main-box-active':''}}">
             <!-- 左边课数，34节和78节marginBottom为12rpx，其他均为8rpx，课程卡片与这相同 -->
@@ -235,7 +234,6 @@
                     <image src="/images/core/common/right_g.png"></image>
                 </view>
             </view>
-
         </view>
     </block>
 </view>

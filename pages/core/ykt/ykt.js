@@ -126,10 +126,14 @@ Page({
           // url: app._server + "/get_yktcost.php",
           url: app._server + "/get_yktcost/",
           method: 'POST',
-          data: app.key({
-              openid: app._user.openid,
-              yktID: app._user.we.ykth
-          }),
+          // data: app.key({
+          //     openid: app._user.openid,
+          //     yktID: app._user.we.ykth
+          // }),
+          data: {
+            openid: app._user.openid,
+            yktID: app._user.we.ykth
+          },
           success: function(res) {
               if(res.data && res.data.status === 200){
                 var info = res.data.data;
