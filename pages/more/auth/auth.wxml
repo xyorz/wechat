@@ -1,0 +1,15 @@
+<!--pages/more/auth/auth.wxml-->
+
+<view class="continer">
+  <view class="auth-box">
+    <image src="/images/more/hdu-logo.png"></image>
+    <view class="auth-text-header">
+      <text>杭电管家申请获得以下权限</text>
+    </view>
+    <view class="divLine"></view>
+    <view class="auth-text-body">
+      <text>获得你的公开信息（昵称、头像地区及性别）</text>
+    </view>
+    <button wx:if="true" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权</button>
+  </view>
+</view>

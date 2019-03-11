@@ -6,8 +6,8 @@
 <!--wxml-->
  
 <!-- 需要使用 button 来授权登录 -->
-<button wx:if="{{aa}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">请先授权登录</button>
-<view wx:else>请升级微信版本</view>
+
+<!-- <view wx:else>请升级微信版本</view> -->
 
   <!--功能导航-->
   <swiper class="main-swpier" indicator-dots="true" indicator-active-color="#73b4ef">

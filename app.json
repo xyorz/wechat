@@ -27,7 +27,10 @@
     "pages/core/cet/cet",
     "pages/core/cet/result",
     "pages/core/fw/fw",
-    "pages/more/help/volunteerHelp"
+    "pages/more/help/volunteerHelp",
+    "pages/manage/manage",
+    "pages/manage/dt/dt",
+    "pages/more/auth/auth"
   ],
   "window": {
     "navigationBarBackgroundColor": "#7acfa6",

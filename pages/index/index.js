@@ -80,6 +80,29 @@ Page({
   },
   //分享
 
+  doUnAuth: function() {
+    var _this = this;
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+            }
+          })
+        }
+        else {
+          _this.setData({
+            'remind': '未授权'
+          });
+          wx.navigateTo({
+            url: '/pages/more/auth/auth',
+          })
+        }
+      }
+    })
+  },
+
   onShareAppMessage: function(){
     return {
       title: 'We重邮',
@@ -98,7 +121,7 @@ Page({
   },
   //每次进入页面刷新数据
   onShow: function(){
-    
+    // this.doUnAuth();
     var _this = this;
     //离线模式重新登录
     if(_this.data.offline){
@@ -139,24 +162,11 @@ Page({
   //第一次加载页面
   onLoad: function(){
     this.login();
-
-    wx.getSetting({
-      success: function (res) {
-        
-        if (res.authSetting['scope.userInfo']) {
-          
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-            }
-          })
-
-        }
-      }
-    })
+    this.doUnAuth();
   },
   //第一次加载和离线登陆的时候调用
   login: function(){
+    this.doUnAuth();
     var _this = this;
     //如果有缓存，则提前加载缓存
     if(app.cache.version === app.version){

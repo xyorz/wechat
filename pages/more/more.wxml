@@ -45,7 +45,7 @@
         </view>
       </navigator>
     </block>
-    <navigator url="/pages/more/login" class="user-info" wx:else>
+    <navigator url="{{ user.wx.nickName? '/pages/more/login' : '/pages/more/auth/auth'}}" class="user-info" wx:else>
       <view class="info-hd">
         <image class="user-avatar" src="{{user.wx.avatarUrl}}"></image>
         <view class="user-title">
@@ -79,9 +79,36 @@
         </view>
       </view>
     </navigator>
+    <navigator url="/pages/manage/manage" class="about-link">
+      <view class="more-btn">
+        <image class="btn-icon" src="/images/more/about.png"></image>
+        <text class="btn-text">后台管理</text>
+        <view class="btn-open">
+            <image class="btn-enter" src="/images/more/enter.png"></image>
+        </view>
+      </view>
+    </navigator>
+    <navigator url="/pages/manage/dt/dt" class="about-link">
+      <view class="more-btn">
+        <image class="btn-icon" src="/images/more/about.png"></image>
+        <text class="btn-text">答题</text>
+        <view class="btn-open">
+            <image class="btn-enter" src="/images/more/enter.png"></image>
+        </view>
+      </view>
+    </navigator>
+    <navigator url="/pages/more/auth/auth" class="about-link">
+      <view class="more-btn">
+        <image class="btn-icon" src="/images/more/about.png"></image>
+        <text class="btn-text">授权页</text>
+        <view class="btn-open">
+            <image class="btn-enter" src="/images/more/enter.png"></image>
+        </view>
+      </view>
+    </navigator>
   </view>
 
-  <navigator url="login" class="login-btn">
+  <navigator url="{{ user.wx.nickName? '/pages/more/login' : '/pages/more/auth/auth'}}" class="login-btn">
     <text wx:if="{{is_bind}}">切换绑定</text>
     <text wx:else>立即绑定</text>
   </navigator>

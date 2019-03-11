@@ -5,11 +5,11 @@ Page({
   data: {
     page: 0,
     list: [
-      { id: 1, 'type': 'jw', name: '教务公告', storage: [], url: 'news/jw_list.php', enabled: { guest: true, student:true, teacher:true} },
-      { id: 2, 'type': 'oa', name: 'OA公告', storage: [], url: 'news/oa_list.php', enabled: { guest: true, student:true, teacher:true} },
-      { id: 3, 'type': 'hy', name: '会议通知', storage: [], url: 'news/hy_list.php', enabled: { guest: true, student: true, teacher:true} },
-      { id: 4, 'type': 'jz', name: '学术讲座',storage:[], url: 'news/jz_list.php', enabled: {guest:true, student:true, teacher:true} },
-      { id: 5, 'type': 'new', name: '综合新闻',storage:[], url: 'news/new_list.php', enabled: {guest:true, student:true, teacher:true} },
+      { id: 1, 'type': 'jw', name: '教务公告', storage: [], url: 'news/jw_list.php', enabled: { guest: true, student: true, teacher: true } },
+      { id: 2, 'type': 'oa', name: 'OA公告', storage: [], url: 'news/oa_list.php', enabled: { guest: true, student: true, teacher: true } },
+      { id: 3, 'type': 'hy', name: '会议通知', storage: [], url: 'news/hy_list.php', enabled: { guest: true, student: true, teacher: true } },
+      { id: 4, 'type': 'jz', name: '学术讲座', storage: [], url: 'news/jz_list.php', enabled: { guest: true, student: true, teacher: true } },
+      { id: 5, 'type': 'new', name: '综合新闻', storage: [], url: 'news/new_list.php', enabled: { guest: true, student: true, teacher: true } },
     ],
     'active': {
       id: 0,
@@ -28,12 +28,12 @@ Page({
 
 
   // 第一次加载页面
-  onLoad: function(){
+  onLoad: function () {
     var _this = this;
   },
 
   // 点击改变导航条图表大小
-  changeFilter: function(e){
+  changeFilter: function (e) {
     var _this = this;
     this.setData({
       'active.type': e.target.id
@@ -54,7 +54,7 @@ Page({
   },
 
   // 后端数据对接
-  getNewList: function(){
+  getNewList: function () {
     var _this = this;
     var type = _this.data.active.type;
     wx.request({
@@ -64,7 +64,7 @@ Page({
         'type': _this.data.active.type,
         'openid': 'openid'
       },
-      success: function(res){
+      success: function (res) {
         // 后台数据
         console.log(res.data[0].title)
         _this.setData({
@@ -79,12 +79,12 @@ Page({
   },
 
 
-  onLoad: function(){
-    if(app._user.is_bind){
+  onLoad: function () {
+    if (app._user.is_bind) {
       this.setData({
         user_type: !app._user.teacher ? 'student' : 'teacher'
       });
-    }else{
+    } else {
       this.setData({
         user_type: 'guest',
         'active.id': 5,
@@ -101,13 +101,13 @@ Page({
     // this.getNewsList();
   },
   //无权限查询
-  changeFilterDisabled: function(){
+  changeFilterDisabled: function () {
     var _this = this;
-    if(!_this.data.disabledRemind){
+    if (!_this.data.disabledRemind) {
       _this.setData({
         disabledRemind: true
       });
-      setTimeout(function(){
+      setTimeout(function () {
         _this.setData({
           disabledRemind: false
         });

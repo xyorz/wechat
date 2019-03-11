@@ -65,12 +65,9 @@ App({
     wx.showNavigationBarLoading();
     wx.login({
       success: function(res){
-        // console.log('login_res:'+JSON.stringify(res))
         if(res.code){
           //调用函数获取微信用户信息
           _this.getUserInfo(function(info){
-            // console.log(JSON.stringify(info))
-            //info是weixin.getUserInfo(res)的res
             _this.saveCache('userinfo', info);
             _this._user.wx = info.userInfo;
             if(!info.encryptedData || !info.iv){
@@ -159,11 +156,10 @@ App({
     var _this = this;
     wx.getUserInfo({
       success: function(res){
-        // console.log("getUserInfo_res:"+JSON.stringify(res))
         typeof cb == "function" && cb(res);
       },
       fail: function(res){
-        _this.showErrorModal('杭电管家。此为测试阉割版，没有功能的实现');
+        // _this.showErrorModal('杭电管家。此为测试阉割版，没有功能的实现');
         _this.g_status = '未授权';
       }
     });
