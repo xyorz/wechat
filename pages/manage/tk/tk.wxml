@@ -1,0 +1,27 @@
+<view>
+  <view class='selectIcon'>
+    <image src='/images/core/dt/select.png' class='answer'></image>
+  </view>
+  <picker bindchange='changeMenu' value="{{index}}" range="{{questionMenu}}">
+    <view class='selectQuestionMenu'>
+      {{selectQuestionMenu}}
+    </view>
+  </picker>
+
+  <view class='input-container'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="请输入题库名" bindinput="bindInput"/>
+          </view>
+      </view>
+    </view>
+  </view>
+ 
+ 
+
+
+  <view class='start' bindtap='startAnswer'>
+    新建题库
+  </view>
+</view>

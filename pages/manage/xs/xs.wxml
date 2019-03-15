@@ -1,0 +1,61 @@
+<!--xs.wxml-->
+<view class="container {{main.mainDisplay?'home':'active'}}">
+
+  <!--页面主体部分-->
+  <view class="main">
+    <!--主体部分内容列表-->
+    <view class="main-list">
+      <!--列表的一个元素的模板结构-->
+      <view class="list-item">
+        <!--信息直接显示部分-->
+        <view class="item" data-index="{{index}}" bindtap="bindOpenList">
+          <view class="item-content">
+            <image class="item-content-image" src="/images/core/xs.png"></image>
+            <view class="item-content-state">
+              <view class="content-state-name">
+                <text class="state-name-active">{{stuInfo.activeName}}</text>{{stuInfo.normalXm}}
+              </view>
+              <view class="content-state-stuId">学号：<text class="state-name-active">{{stuInfo.activeXh}}</text>{{stuInfo.normalXh}}</view>
+            </view>
+          </view>
+        </view>
+        <!--信息隐藏的下拉列表-->
+        <view class="item-ul">
+          <view class="item-ul-gendor item-ul-li">
+            <text class="ul-li-label">性别</text>
+            <input class="weui-input" value="{{ stuInfo.xb }}"/>
+            <!-- <text class="ul-li-content">{{}}</text> -->
+          </view>
+          <view class="item-ul-college item-ul-li">
+            <text class="ul-li-label">学院名</text>
+            <input class="weui-input" value="{{ stuInfo.yxm }}"/>
+            <!-- <text class="ul-li-content">{{stuInfo.yxm}}</text> -->
+          </view>
+          <view class="item-ul-major item-ul-li">
+            <text class="ul-li-label">专业名</text>
+            <input class="weui-input" value="{{ stuInfo.zym }}"/>
+            <!-- <text class="ul-li-content">{{stuInfo.zym}}</text> -->
+          </view>
+          <view class="item-ul-grade item-ul-li">
+            <text class="ul-li-label">年级</text>
+            <input class="weui-input" value="{{ stuInfo.nj }}"/>
+            <!-- <text class="ul-li-content">{{stuInfo.nj}}</text> -->
+          </view>
+          <view class="item-ul-class item-ul-li">
+            <text class="ul-li-label">班级</text>
+            <input class="weui-input" value="{{ stuInfo.bj }}"/>
+            <!-- <text class="ul-li-content">{{stuInfo.bj}}</text> -->
+          </view>
+        </view>
+      </view>
+
+      <view class="page__bd">
+        <view class="weui-form-preview__ft">
+          <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">取消</navigator>
+          <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">保存</navigator>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>

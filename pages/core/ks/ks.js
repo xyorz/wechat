@@ -20,71 +20,12 @@ Page({
     data.show[id] = !this.data.show[id];
     this.setData(data);
   },
-  //分享
-  onShareAppMessage: function(){
-    var name = this.data.name || app._user.we.info.name,
-        id = this.data.id || app._user.we.info.id;
-    return {
-      title: name + '的考试安排',
-      desc: 'We重邮 - 考试安排',
-      path: '/pages/core/ks/ks?id='+id+'&name='+name
-    };
-  },
-  //下拉更新
-  onPullDownRefresh: function(){
-    var _this = this;
-    _this.loginHandler({
-      id: _this.data.id || app._user.we.info.id,
-      name: _this.data.name || app._user.we.info.name
-    });
-  },
   onLoad: function(options){
     var _this = this;
     app.loginLoad(function(){
       _this.loginHandler.call(_this, options);
     });
 
-    // 假数据
-    // _this.setData({
-    //   'remind': '',
-    //   'ks': {
-    //     ksName: '期末考试',
-    //   },
-    //   'id': '1600000',
-    //   'name': '小明',
-    //   'list':[
-    //     {
-    //       open: true,
-    //       type: '笔试',
-    //       course: '数据结构',
-    //       // countdown: 2,
-    //       place: '1教',
-    //       date: '11-11',
-    //       week: 5,
-    //       day: 6,
-    //       time: '11:00 - 13:00',
-    //       lesson: '5-7节',
-    //       room: '1教500',
-    //       number: '65',
-    //       teacher: '王'
-    //     },
-    //     {
-    //       open: true,
-    //       type: '期中',
-    //       course: '数据结构',
-    //       // countdown: 2,
-    //       place: '1教',
-    //       date: '11-11',
-    //       week: 5,
-    //       day: 6,
-    //       time: '11:00 - 13:00',
-    //       lesson: '5-7节',
-    //       room: '1教500',
-    //       number: '65',
-    //       teacher: '王'
-    //     }
-    //   ]
-    // })
   },
   //让分享时自动登录
   loginHandler: function(options){

@@ -1,0 +1,2 @@
+<!--pages/core/sp/sp.wxml-->
+<web-view src="http://106.13.53.42:3154/player/"></web-view>

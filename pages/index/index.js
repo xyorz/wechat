@@ -17,8 +17,8 @@ Page({
         { id: 'xs', name: '学生查询', disabled: false, teacher_disabled: false, offline_disabled: true },
         { id: 'ykt', name: '一卡通', disabled: false, teacher_disabled: false, offline_disabled: false },
         { id: 'jy', name: '借阅信息', disabled: false, teacher_disabled: false, offline_disabled: false },
-        { id: 'xf', name: '学费信息', disabled: true, teacher_disabled: true, offline_disabled: false },
-        { id: 'sdf', name: '电费查询', disabled: true, teacher_disabled: true, offline_disabled: false },
+        { id: 'dt', name: '答题', disabled: false, teacher_disabled: true, offline_disabled: false },
+        { id: 'sp', name: '教学视频', disabled: false, teacher_disabled: true, offline_disabled: false },
         { id: 'bx', name: '报修', disabled: true, teacher_disabled: false, offline_disabled: true }
       ],[
         { id: 'cet', name: '四六级', disabled: true, teacher_disabled: true, offline_disabled: true},

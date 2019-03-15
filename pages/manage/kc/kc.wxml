@@ -1,0 +1,65 @@
+<!--ks.wxml-->
+<view class="container">
+    <view wx:if="{{remind}}" class="remind-box">
+        <image wx:if="{{remind == '加载中'}}" class="remind-img" src="/images/index/loading.gif"></image>
+        <block wx:else>
+          <image class="remind-img" src="/images/index/nothing.png"></image>
+          <text class="remind-text">{{remind}}</text>
+        </block>
+    </view>
+    <block wx:else>
+
+        <view class="ks-header">
+            <view class="ks-text">
+                <text class="ks-header-title">课程管理</text>
+                <text class="ks-header-info-ksName">{{ks.ksName}}</text>
+                <text class="ks-header-info">教师号：{{id}}</text>
+                <text class="ks-header-info">姓名：{{name}}</text>
+            </view>
+            <image class="ks-bg" src="/images/core/ks.png"></image>
+        </view>
+
+        <view class="ks-class-ctn">
+            <block wx:for="{{list}}" wx:key="index">
+                <view class="ks-class-item {{item.open ? 'ks-item-show' : ''}}">
+                    <view class="ks-hd" data-id="{{index}}" bindtap="slideDetail">
+                        <view class="ks-hd-left">
+                            <view class="ks-hd-name">
+                                {{item.course}}
+                            </view>
+                            <view class="ks-hd-other">
+                                {{item.countdown}}<text class="ks-hd-place">{{item.place}}</text>
+                            </view>
+                        </view>
+                        <image class="ks-item-icon" src="/images/core/common/down.png"></image>
+                    </view>                
+                    <view class="ks-detail">
+                        <view class="ks-detail-item">
+                            <text class="ks-detail-label">日期</text>
+                            <text class="ks-detail-content">{{item.date}}（{{item.week}}周-周{{item.day}}）</text>
+                        </view>
+                        <view class="ks-detail-item">
+                            <text class="ks-detail-label">时间</text>
+                            <text class="ks-detail-content">{{item.time}}（{{item.lesson}}）</text>
+                        </view>
+                        <view class="ks-detail-item">
+                            <text class="ks-detail-label">地点</text>
+                            <text class="ks-detail-content">{{item.room}}</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <navigator url="/pages/manage/kc/create/create">
+              <block>
+                  <view class="ks-class-item ks-item-show">
+                    <view class="new-kc-botton">
+                      <text>新增课程</text>
+                    </view>
+                  </view>
+              </block>
+            </navigator>
+        </view>
+    
+    </block>
+
+</view>

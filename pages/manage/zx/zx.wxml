@@ -1,0 +1,37 @@
+<!--pages/manage/kc/create/create.wxml-->
+
+<view class="container">
+  <view class="page__bd">
+    
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" value="{{multiIndex}}" range="{{selectType}}" data-binddata="s_type">
+          <view class="picker">点击选择分类</view>
+        </picker>
+      </view>
+      <view class="weui-form-preview__bd">
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">分类</view>
+              <view class="weui-form-preview__value">{{ type[s_type] }}</view>
+          </view>
+      </view>
+    </view>
+
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <view class="picker">资讯详情</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入文本" style="height: 3.3em" bindinput="bindTextArea" maxlength="1024" style=' height: 1024rpx;'/>
+            <view class="weui-textarea-counter">{{ textAreaData.length }}/1024</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">取消</navigator>
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">保存</navigator>
+      </view>
+    </view>
+
+  </view>
+</view>
