@@ -63,26 +63,14 @@ Page({
             wx.showToast({
               title: '绑定成功',
               icon: 'success',
-              duration: 1500
+              duration: 1500,
+              success: function(){
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
             });
             if(!app._user.teacher){
-              setTimeout(function(){
-                wx.showModal({
-                  title: '提示',
-                  content: '部分功能需要完善信息才能正常使用，是否前往完善信息？',
-                  cancelText: '以后再说',
-                  confirmText: '完善信息',
-                  success: function(res) {
-                    if (res.confirm) {
-                      wx.redirectTo({
-                        url: 'append'
-                      });
-                    } else {
-                      wx.navigateBack();
-                    }
-                  }
-                });
-              }, 1500);
             }else{
               wx.navigateBack();
             }

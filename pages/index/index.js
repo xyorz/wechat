@@ -20,9 +20,6 @@ Page({
         { id: 'dt', name: '答题', disabled: false, teacher_disabled: true, offline_disabled: false },
         { id: 'sp', name: '教学视频', disabled: false, teacher_disabled: true, offline_disabled: false },
         { id: 'bx', name: '报修', disabled: true, teacher_disabled: false, offline_disabled: true }
-      ],[
-        { id: 'cet', name: '四六级', disabled: true, teacher_disabled: true, offline_disabled: true},
-        { id: 'fw', name: "志愿活动", disabled: true, teacher_disabled: true, offline_disabled: false}
       ]
     ],
     //?
@@ -85,6 +82,7 @@ Page({
     wx.getSetting({
       success: function (res) {
         if (res.authSetting['scope.userInfo']) {
+          app.g_status = ''
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: function (res) {

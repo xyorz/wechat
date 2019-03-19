@@ -85,11 +85,12 @@ App({
                 key: info.encryptedData,
                 iv: info.iv
               },
-              //sessionid验证成功，后端返回一个？数据
               success: function(res){
                 // console.log(JSON.stringify(res))
                 if(res.data && res.data.status >= 200 && res.data.status < 400){
                   var status = false, data = res.data.data;
+                  
+                  console.log(data)
                   //判断缓存是否有更新
                   if(_this.cache.version !== _this.version || _this.cache.userdata !== data){
                     _this.saveCache('version', _this.version);
@@ -136,9 +137,33 @@ App({
       }
     });
   },
+  doUnAuth: function () {
+    var _this = this;
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          app.g_status = ''
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+            }
+          })
+        }
+        else {
+          _this.setData({
+            'remind': '未授权'
+          });
+          wx.navigateTo({
+            url: '/pages/more/auth/auth',
+          })
+        }
+      }
+    })
+  },
   //返回用户信息
   processData: function(key){
     var _this = this;
+    // this.doUnAuth();
     // var data = JSON.parse(_this.util.base64.decode(key));
     var data = JSON.parse(JSON.stringify(key))
     _this._user.is_bind = data.is_bind;
@@ -159,7 +184,6 @@ App({
         typeof cb == "function" && cb(res);
       },
       fail: function(res){
-        // _this.showErrorModal('杭电管家。此为测试阉割版，没有功能的实现');
         _this.g_status = '未授权';
       }
     });
