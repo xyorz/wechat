@@ -35,17 +35,27 @@
                     </view>                
                     <view class="ks-detail">
                         <view class="ks-detail-item">
-                            <text class="ks-detail-label">日期</text>
-                            <text class="ks-detail-content">{{item.date}}（{{item.week}}周-周{{item.day}}）</text>
+                          <text class="ks-detail-label">日期</text>
+                          <text class="ks-detail-content">{{item.date}}（{{item.week}}周-周{{item.day}}）</text>
                         </view>
                         <view class="ks-detail-item">
-                            <text class="ks-detail-label">时间</text>
-                            <text class="ks-detail-content">{{item.time}}（{{item.lesson}}）</text>
+                          <text class="ks-detail-label">时间</text>
+                          <text class="ks-detail-content">{{item.time}}（{{item.lesson}}）</text>
                         </view>
                         <view class="ks-detail-item">
-                            <text class="ks-detail-label">地点</text>
-                            <text class="ks-detail-content">{{item.room}}</text>
+                          <text class="ks-detail-label">地点</text>
+                          <text class="ks-detail-content">{{item.room}}</text>
                         </view>
+                        <navigator url='/pages/manage/kc/update/update'>
+                          <view class="ks-detail-item" data-kc-id="{{item.index}}" style='text-align:center'>
+                            <div style="width:100%"> <icon type="info_circle" size="15"></icon> 修改课程</div>
+                          </view>
+                        </navigator>
+                        <navigator url='/pages/manage/kc/update/update'>
+                          <view class="ks-detail-item" data-kc-id="{{item.index}}" style='text-align:center'>
+                            <div style="width:100%"> <icon type="cancel" size="15"></icon> 删除课程</div>
+                          </view>
+                        </navigator>
                     </view>
                 </view>
             </block>
@@ -53,7 +63,7 @@
               <block>
                   <view class="ks-class-item ks-item-show">
                     <view class="new-kc-botton">
-                      <text>新增课程</text>
+                      <div><icon type="info_circle" size="15"></icon> 新增课程</div>
                     </view>
                   </view>
               </block>

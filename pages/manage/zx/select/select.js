@@ -33,7 +33,7 @@ Page({
     this.getNewList()
   },
 
-  onShow: function(){
+  onShow: function () {
     this.getNewList()
   },
 

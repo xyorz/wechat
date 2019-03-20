@@ -24,7 +24,7 @@ Page({
     room: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
 
     selectTime: [
-      ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'], 
+      ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'],
       ['1-2节', '3-4节', '3-5节', '6-7节', '6-8节', '7-8节', '9-10节', '9-11节'],
     ],
     selectWeek: [
@@ -45,8 +45,8 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value)
     let details = e.detail.value;
     let values = e.target.dataset.binddata.split(',');
-    for(let i in values){
-      _this.setData({[values[i]]: details[i]});
+    for (let i in values) {
+      _this.setData({ [values[i]]: details[i] });
     }
   },
 

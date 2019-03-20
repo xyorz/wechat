@@ -1,0 +1,54 @@
+<!--pages/manage/kc/create/create.wxml-->
+
+<view class="container">
+  <view class="page__bd">
+
+   <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <view class="picker">
+          问卷信息
+        </view>
+      </view>
+      <view class="weui-form-preview__bd">
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">问卷标题</view>
+              <view class="weui-form-preview__value"><input class="weui-input" placeholder="输入问卷名"/></view>
+          </view>
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">备注</view>
+              <view class="weui-form-preview__value"><input class="weui-input" placeholder="输入备注"/></view>
+          </view>
+      </view>
+    </view>
+
+    <view class="weui-form-preview" wx:for="{{ quesItems }}" wx:for-index="quesIndex">
+      <view class="weui-form-preview__hd">
+        <text class="title-index">{{ quesIndex+1 }}.</text> 
+        <input class="picker" placeholder="输入问题" bindinput="bindInputTitle" data-ques-id="{{ quesIndex }}" value="{{ quesItems[quesIndex].name }}"/>
+        <view class="ques-cancel"  bindtap='delQues' data-ques-id="{{ quesIndex }}">
+          <icon type="cancel" size="23"></icon>
+        </view>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item" wx:for="{{ item.ques }}" wx:for-item="qitem" wx:for-index="i" style="background-color:{{item.answer==i?'skyblue':''}}" bindtap="bindClick">
+          <view class="weui-form-preview__label">{{ options[i] }}</view>
+            <view class="weui-form-preview__value">
+            <input class="weui-input" placeholder="输入选项" bindinput="bindInput" data-ques-id="{{ quesIndex }}" data-options-id="{{ i }}" value="{{ quesItems[quesIndex].ques[i] }}"/>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+      <view class="picker" bindtap="createQues"> + 新增问题</view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">取消</navigator>
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">保存</navigator>
+      </view>
+      
+    </view>
+
+  </view>
+</view>

@@ -81,8 +81,8 @@
     </navigator>
     <navigator url="/pages/manage/manage" class="about-link">
       <view class="more-btn">
-        <image class="btn-icon" src="/images/more/about.png"></image>
-        <text class="btn-text">后台管理</text>
+        <icon type="info_circle" size="18" style="margin:22rpx 14rpx 0 3rpx"></icon>
+        <text class="btn-text"> 后台管理</text>
         <view class="btn-open">
             <image class="btn-enter" src="/images/more/enter.png"></image>
         </view>

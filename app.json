@@ -40,7 +40,14 @@
     "pages/manage/tk/tk",
     "pages/manage/tk/create/create",
     "pages/manage/zx/zx",
-    "pages/manage/xs/xs"
+    "pages/manage/xs/xs",
+    "pages/manage/kc/update/update",
+    "pages/manage/zx/update/update",
+    "pages/manage/zx/select/select",
+    "pages/manage/wj/wj",
+    "pages/manage/wj/select/select",
+    "pages/core/wj/wj",
+    "pages/core/wj/answer/answer"
   ],
   "window": {
     "navigationBarBackgroundColor": "#7acfa6",

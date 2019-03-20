@@ -1,0 +1,92 @@
+<!--pages/manage/kc/create/create.wxml-->
+
+<view class="container">
+  <view class="page__bd">
+
+  
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <view class="picker">
+          课程信息
+        </view>
+      </view>
+      <view class="weui-form-preview__bd">
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">课程名称</view>
+              <view class="weui-form-preview__value"><input class="weui-input" placeholder="输入课程名"/></view>
+          </view>
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">备注</view>
+              <view class="weui-form-preview__value"><input class="weui-input" placeholder="输入备注"/></view>
+          </view>
+      </view>
+    </view>
+
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" value="{{multiIndex}}" range="{{selectTime}}" data-binddata="day,start">
+          <view class="picker">点击选择课程时间</view>
+        </picker>
+      </view>
+      <view class="weui-form-preview__bd">
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">星期</view>
+              <view class="weui-form-preview__value">{{ xq[day] }}</view>
+          </view>
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">上课时间</view>
+              <view class="weui-form-preview__value">{{ djj[start] }}</view>
+          </view>
+      </view>
+    </view>
+
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" value="{{multiIndex}}" range="{{selectWeek}}" data-binddata="s_ks,s_js,s_dsz">
+          <view class="picker">点击选择上课周数</view>
+        </picker>
+      </view>
+      <view class="weui-form-preview__bd">
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">开始</view>
+              <view class="weui-form-preview__value">第{{ ks[s_ks] }}周</view>
+          </view>
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">结束</view>
+              <view class="weui-form-preview__value">第{{ js[s_js] }}周</view>
+          </view>
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">单双周</view>
+              <view class="weui-form-preview__value">{{ dsz[s_dsz] }}</view>
+          </view>
+      </view>
+    </view>
+    
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" value="{{multiIndex}}" range="{{selectRoom}}" data-binddata="s_jxl,s_floor,s_room">
+          <view class="picker">点击选择教室</view>
+        </picker>
+      </view>
+      <view class="weui-form-preview__bd">
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">教学楼</view>
+              <view class="weui-form-preview__value">{{ jxl[s_jxl] }}</view>
+          </view>
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">楼层</view>
+              <view class="weui-form-preview__value">{{ floor[s_floor] }}</view>
+          </view>
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">教室</view>
+              <view class="weui-form-preview__value">{{ room[s_room] }}</view>
+          </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">取消</navigator>
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">保存</navigator>
+      </view>
+    </view>
+
+  </view>
+</view>

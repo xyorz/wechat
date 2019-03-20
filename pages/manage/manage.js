@@ -7,13 +7,13 @@ Page({
   data: {
     cards: [
       ["https://we.cqu.pt/app/images/index/kb-bg.png", 
-        { id: "wj", img: "/images/core/fw1.png", title: "新增问卷", url: "/pages/manage/tk/create/create" },
+        { id: "wj", img: "/images/core/fw1.png", title: "新增问卷", url: "/pages/manage/wj/select/select" },
         { id: "kc", img: "/images/core/kb.png", title: "课程管理", url: "/pages/manage/kc/kc" }],
       ["https://we.cqu.pt/app/images/index/jy-bg.png",
-        { id: "zx", img: "/images/core/ykt.png", title: "资讯管理", url: "/pages/manage/zx/zx" },
+        { id: "zx", img: "/images/core/ykt.png", title: "资讯管理", url: "/pages/manage/zx/select/select" },
         { id: "tk", img: "/images/core/jy.png", title: "题库管理", url: "/pages/manage/tk/tk" }],
       ["https://we.cqu.pt/app/images/index/ykt-bg.png",
-      { id: "sp", img: "/images/core/kjs.png", title: "教学视频", url: "" },
+      { id: "sp", img: "/images/core/kjs.png", title: "视频管理", url: "" },
       { id: "xy", img: "/images/core/xs.png", title: "学员管理", url: "/pages/core/xs/xs" }],
     ]
   },

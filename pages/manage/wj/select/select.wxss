@@ -1,0 +1,12 @@
+/* pages/manage/wj/select/select.wxss */
+
+@import "../../weui/weui.wxss";
+
+page{
+  background-color: #f6f6f6;
+}
+
+.page{
+  position: relative;
+  top: 75rpx;
+}

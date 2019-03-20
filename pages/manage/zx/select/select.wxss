@@ -102,9 +102,9 @@
   opacity: 0.6;
 }
 .list-item-icon{
-  flex: 0 0 60rpx;
-  height: 60rpx;
-  width: 60rpx;
-  border-left: 1px solid #fff;
-  padding-left: 25rpx;
+  flex: 0 0 40rpx;
+  height: 40rpx;
+  width: 40rpx;
+  /* border-left: 1px solid #fff; */
+  padding-left: 15rpx;
 }
