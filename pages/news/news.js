@@ -60,13 +60,20 @@ Page({
       },
       success: function (res) {
         // 后台数据
-        console.log(res.data[0].title)
+        console.log(res)
+        let d = [];
+        if(res.statusCode==200&&res.data){
+          for(let index in res.data){
+            d.push({
+              acticleid: res.data[index].id,
+              type: _this.data.active.type,
+              title: res.data[index].title,
+              time: res.data[index].time
+            })
+          }
+        }
         _this.setData({
-          'user_type': 'guest',
-          'active.data[0].articleid': 1, 'active.data[0].type': _this.data.active.type, 'active.data[0].title': type + res.data[0].title, 'active.data[0].time': res.data[0].time,
-          'active.data[1].articleid': 2, 'active.data[1].type': _this.data.active.type, 'active.data[1].title': type + '标题2', 'active.data[1].time': '2012-12-25',
-          'active.data[2].articleid': 3, 'active.data[2].type': _this.data.active.type, 'active.data[2].title': type + '标题2', 'active.data[2].time': '2012-12-25',
-          'active.data[3].articleid': 4, 'active.data[3].type': _this.data.active.type, 'active.data[3].title': type + '标题2', 'active.data[3].time': '2012-12-25',
+          'active.data': d
         });
       }
     })

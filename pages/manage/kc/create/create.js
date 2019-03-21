@@ -1,3 +1,4 @@
+var app = getApp();
 Page({
   data: {
     index: 0,
@@ -5,6 +6,7 @@ Page({
     class: "",
     day: 0,
     start: 0,
+    title: '',
     room: "",
     xq: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'],
     djj: ['1-2节', '3-4节', '3-5节', '6-7节', '6-8节', '7-8节', '9-10节', '9-11节'],
@@ -50,4 +52,40 @@ Page({
     }
   },
 
+  bindTitleInput: function(e) {
+    this.setData({
+      title: e.detail.value
+    })
+  },
+
+  bindSubmit: function(e){
+    let id = app._user.we.info.id;
+    const _this = this;
+    let jxl = this.data.s_jxl;
+    switch(jxl){
+      case 0: jxl = 1; break;
+      case 1: jxl = 2; break;
+      case 2: jxl = 3; break;
+      case 3: jxl = 6; break;
+      case 4: jxl = 7; break;
+    }
+    let room = this.data.s_room;
+    let floor = this.data.s_floor;
+    room = room + 1;
+    floor += 1;
+    room = jxl + '-' + floor + '0' + room;
+
+    wx.request({
+      url: `https://hdumanagernews.applinzi.com/admin/course_add.php?name=${_this.data.title}&bz=考察&xq=${this.data.day}&sj=${this.data.start}&ks=${this.data.s_ks}&js=${this.data.s_js}&dsz=${this.data.s_dsz}&jxl=${jxl}&room=${room}&teacherid=${id}`,
+      success: function(){
+        wx.showToast({
+          duration: 1500,
+          title: '添加成功',
+          success: function(){
+            setTimeout(() => wx.navigateBack(), 1500)
+          }
+        })
+      }
+    })
+  }
 })

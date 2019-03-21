@@ -35,15 +35,6 @@
           </view>
         </view>
       </view>
-      <!-- <navigator url="append" class="append-link" wx:if="{{!user.teacher}}">
-        <view class="more-btn">
-          <image class="btn-icon" src="/images/more/append.png"></image>
-          <text class="btn-text">完善信息</text>
-          <view class="btn-open">
-            <image class="btn-enter" src="/images/more/enter.png"></image>
-          </view>
-        </view>
-      </navigator> -->
     </block>
     <navigator url="{{ user.wx.nickName? '/pages/more/login' : '/pages/more/auth/auth'}}" class="user-info" wx:else>
       <view class="info-hd">
@@ -79,7 +70,7 @@
         </view>
       </view>
     </navigator>
-    <navigator url="/pages/manage/manage" class="about-link">
+    <navigator url="/pages/manage/manage" class="about-link" wx:if="{{user.we.type=='老师'}}">
       <view class="more-btn">
         <icon type="info_circle" size="18" style="margin:22rpx 14rpx 0 3rpx"></icon>
         <text class="btn-text"> 后台管理</text>

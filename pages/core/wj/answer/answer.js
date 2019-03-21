@@ -415,9 +415,18 @@ Page({
     // })
 
     // 总之先模拟一个页面跳转
-    wx.navigateTo({
-      url: '/pages/core/dt/history/index',
+    wx.showToast({
+      title: '提交成功！',
+      duration: 1500,
+      success: function(){
+        setTimeout(() => {
+          wx.reLaunch({
+            url: '/pages/index/index',
+          })
+        }, 1500)
+      }
     })
+ 
 
     var err = [];
     for (let object of result) {
@@ -425,12 +434,7 @@ Page({
         err.push(object)
       }
     }
-    //添加错题
-    wx.u.addError(menu, err, questionMenu).then(res => { })
-    //统计分数
-    wx.u.getStatistics(menu).then(res => {
-      wx.u.statistics(res.result.objectId, this.data.questionOk).then(res1 => { })
-    })
+    
   },
   //交卷对话框
   handleSubmitOpen() {

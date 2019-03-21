@@ -16,7 +16,15 @@ Page({
     index: 0,
   },
 
-  onLoad (e) {
+  onShow (e) {
+
+    wx.request({
+      url: `https://hdumanagernews.applinzi.com/dati/questionbanklist.php?type=listsearch`,
+      method: "GET",
+      success: function(res){
+        console.log(res)
+      }
+    })
 
     //获取套题
     // wx.u.getQuestionMenu().then(res=>{

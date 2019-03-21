@@ -27,7 +27,6 @@
                 <view class="mg-8">10</view>
                 <view>11</view>
                 <view>12</view>
-                <view class="kb-timeline-tri" style="top:{{timelineTop}}rpx"></view>
             </view>
             <scroll-view class="kb-ctn" catchscroll="scrollXHandle" scroll-x="true" scroll-left="{{scroll.left}}" >
                 <!-- 头部星期数 -->

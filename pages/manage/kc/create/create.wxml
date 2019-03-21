@@ -13,7 +13,9 @@
       <view class="weui-form-preview__bd">
           <view class="weui-form-preview__item">
               <view class="weui-form-preview__label">课程名称</view>
-              <view class="weui-form-preview__value"><input class="weui-input" placeholder="输入课程名"/></view>
+              <view class="weui-form-preview__value">
+               <input class="weui-input" placeholder="输入课程名" bindinput='bindTitleInput' value='{{title}}'/>
+              </view>
           </view>
           <view class="weui-form-preview__item">
               <view class="weui-form-preview__label">备注</view>
@@ -84,7 +86,7 @@
       </view>
       <view class="weui-form-preview__ft">
         <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">取消</navigator>
-        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">保存</navigator>
+        <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap='bindSubmit' style='background:white'>保存</button>
       </view>
     </view>
 

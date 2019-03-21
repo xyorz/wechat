@@ -75,17 +75,13 @@
             <text class="ul-li-label">班级</text>
             <text class="ul-li-content">{{item.bj}}</text>
           </view>
-          <view class="item-ul-more item-ul-li">
+          <view class="item-ul-more item-ul-li" wx:if="{{user.we.type=='老师'}}">
             <text class="ul-li-label">修改信息</text>
-            <navigator open-type="redirect" url="/pages/manage/xs/xs?id={{item.xh}}&name={{item.xm}}" class="ul-li-more ul-li-kb">点击修改</navigator>
+            <navigator open-type="redirect" url="/pages/manage/xs/xs?id={{item.activeXh}}&name={{item.normalXh}}" class="ul-li-more ul-li-kb">点击修改</navigator>
           </view>
         </view>
       </view>
     </view>
-    <!--提示消息-->
-    <!-- <view class="search-message">
-      <text class="message-title">{{main.message}}</text>
-    </view> -->
   </view>
 
   <view class="help" id="help" wx:if="{{header.help_status}}" bindtap="tapHelp">

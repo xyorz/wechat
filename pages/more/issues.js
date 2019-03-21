@@ -32,7 +32,7 @@ Page({
         info += '\r\n手机型号：' + res.model;
         info += '（' + res.platform + ' - ' + res.windowWidth + 'x' + res.windowHeight + '）';
         info += '\r\n微信版本号：' + res.version;
-        info += '\r\nWe重邮版本号：' + app.version;
+        info += '\r\n杭电助手版本号：' + app.version;
         _this.setData({
           info: info
         });
@@ -41,14 +41,17 @@ Page({
     if (app.g_status) { return; }
     wx.showNavigationBarLoading();
     wx.request({
-      url: app._server + '/get_feedback.php',
-      method: 'POST',
-      data: {
-        openid: app._user.openid
-      },
+      url: 'https://hdumanagernews.applinzi.com/get_feedback.php?openid=' + app._user.openid,
+      method: 'GET',
       success: function (res) {
-        if (res.data.status === 200) {
-          var list = res.data.data;
+        console.log(res)
+        if (res.statusCode === 200 && res.data) {
+          let d = res.data;
+          var list = [];
+          for(let i in d){
+            list.push(d[i])
+          }
+          
           if (list && list.length) {
             _this.setData({
               'list.count': list.length,
@@ -121,23 +124,12 @@ Page({
         wx.hideNavigationBarLoading();
       }
     });
-    wx.request({
-      url: 'https://api.github.com/repos/lanshan-studio/wecqupt/issues/' + id + '/comments',
-      success: function (res) {
-        var data = {};
-        data['list.data[' + index + '].comments'] = res.data;
-        _this.setData(data);
-      },
-      complete: function () {
-        wx.hideNavigationBarLoading();
-      }
-    });
   },
   openList: function (e) {
     var _this = this, list = _this.data.list;
-    if (!list.status && list.count) {
-      _this.getIssue(list.data[0].issues, 0);
-    }
+    // if (!list.status && list.count) {
+    //   _this.getIssue(list.data[0].issues, 0);
+    // }
     _this.setData({
       'list.status': !list.status
     });
@@ -161,85 +153,6 @@ Page({
       'content': e.detail.value
     });
   },
-  choosePhoto: function () {
-    var _this = this;
-    wx.showModal({
-      title: '提示',
-      content: '上传图片需要消耗流量，是否继续？',
-      confirmText: '继续',
-      success: function (res) {
-        if (res.confirm) {
-          wx.chooseImage({
-            count: 4,
-            sourceType: ['album'],
-            success: function (res) {
-              var tempFilePaths = res.tempFilePaths, imgLen = tempFilePaths.length;
-              _this.setData({
-                uploading: true,
-                imgLen: _this.data.imgLen + imgLen
-              });
-              tempFilePaths.forEach(function (e) {
-                _this.uploadImg(e);
-              });
-            }
-          });
-        }
-      }
-    });
-  },
-  uploadImg: function (path) {
-    var _this = this;
-    if (app.g_status) {
-      app.showErrorModal(app.g_status, '上传失败');
-      return;
-    }
-    wx.showNavigationBarLoading();
-    // 上传图片
-    wx.uploadFile({
-      url: 'https://up.qbox.me',
-      header: {
-        'Content-Type': 'multipart/form-data'
-      },
-      filePath: path,
-      name: 'file',
-      formData: {
-        token: _this.data.qiniu
-      },
-      success: function (res) {
-        var data = JSON.parse(res.data);
-        if (data.key) {
-          _this.setData({
-            imgs: _this.data.imgs.concat('http://wecqupt.congm.in/' + data.key)
-          });
-        }
-        if (_this.data.imgs.length === _this.data.imgLen) {
-          _this.setData({
-            uploading: false
-          });
-        }
-      },
-      fail: function (res) {
-        _this.setData({
-          imgLen: _this.data.imgLen - 1
-        });
-      },
-      complete: function () {
-        wx.hideNavigationBarLoading();
-      }
-    });
-  },
-  previewPhoto: function (e) {
-    var _this = this;
-    //预览图片
-    if (_this.data.uploading) {
-      app.showErrorModal('正在上传图片', '预览失败');
-      return false;
-    }
-    wx.previewImage({
-      current: _this.data.imgs[e.target.dataset.index],
-      urls: _this.data.imgs
-    });
-  },
   submit: function () {
     var _this = this, title = '', content = '', imgs = '';
     if (app.g_status) {
@@ -259,12 +172,6 @@ Page({
         if (res.confirm) {
           title = '【' + app._user.wx.nickName + '】' + _this.data.title;
           content = _this.data.content + '\r\n\r\n' + _this.data.info;
-          if (_this.data.imgLen) {
-            _this.data.imgs.forEach(function (e) {
-              imgs += '\r\n\r\n' + '![img](' + e + '?imageView2/2/w/750/interlace/0/q/88|watermark/2/text/V2Xph43pgq4=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)';
-            });
-            content += imgs;
-          }
           app.showLoadToast();
           wx.request({
             url: 'https://hdumanagernews.applinzi.com/feedback.php',

@@ -250,9 +250,9 @@ Page({
       for(var i = 0; i < 5; i++){
         for(var j = 0; j < lessons[i].length; j++){
           var lesson = lessons[i][j];
-          // console.log(JSON.stringify(lesson))
           if(lesson.weeks && lesson.weeks.indexOf(parseInt(info.week)) !== -1){
             var begin_lesson = 2*i+1, end_lesson = 2*i+lesson.number;
+            console.log(end_lesson)
             list.push({
               when: begin_lesson+' - '+end_lesson+'节'
                     +'（'+time_list[begin_lesson-1].begin+'~'+time_list[end_lesson-1].end+'）',

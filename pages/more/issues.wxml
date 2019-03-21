@@ -1,19 +1,19 @@
 <!--issues.wxml-->
 <view class="container">
-  <!-- <view class="list-btn" bindtap="openList">
+  <view class="list-btn" bindtap="openList">
     <image class="btn-icon" src="/images/more/issue.png"></image>
     <text class="btn-text">我的反馈记录（{{list.count}}次）</text>
     <view class="btn-open">
       <image class="btn-open-img" src="/images/core/common/{{list.status ? 'up' : 'down'}}.png"></image>
     </view>
-  </view> -->
+  </view>
 
   <view class="issues-list" wx:if="{{list.status}}">
     <block wx:if="{{list.count}}">
       <view wx:for="{{list.data}}" wx:key="id" class="issues-item {{index == list.open ? '' : 'close'}}" data-index="{{index}}" bindtap="openItem">
 
         <view class="item-hd">
-          <text class="btn-id">#{{item.issues}}</text>
+          <text class="btn-id">{{item.title}}</text>
           <block wx:if="{{index == list.open}}">
             <view class="item-labels">
               <text wx:for="{{item.content.labels}}" wx:key="id" wx:for-item="label" class="item-label">{{label.name}}</text>
@@ -23,7 +23,7 @@
           </block>
         </view>
 
-        <text class="btn-text">{{item.title}}</text>
+        <text class="btn-text">{{item.body}}</text>
         <view class="btn-open" wx:if="{{index != list.open}}">
           <image class="btn-open-img" src="/images/core/common/down.png"></image>
         </view>

@@ -17,21 +17,23 @@ Page({
   },
 
   onLoad (e) {
-
-    //获取套题
-    // wx.u.getQuestionMenu().then(res=>{
-    //   var questionMenu = [];
-    //   if( res.result.length>0 ){
-    //     for( var i =0;i<res.result.length;i++ ){
-    //       questionMenu.push(res.result[i].name);
-    //     }
-    //   }
-    //   console.log(questionMenu);
-    //   this.setData({
-    //     questionMenu: questionMenu,
-    //     objectQuestionMenu:res.result
-    //   })
-    // })
+    const _this = this;
+    wx.request({
+      url: `https://hdumanagernews.applinzi.com/dati/questionbanklist.php?type=listsearch`,
+      method: "GET",
+      success: function (res) {
+        console.log(res)
+        if(res.statusCode==200&&res.data){
+          let menu = [];
+          for(let index in res.data){
+            menu.push(res.data[index].name)
+          }
+          _this.setData({
+            questionMenu: menu
+          })
+        }
+      }
+    })
   },
 
   /**
@@ -57,9 +59,10 @@ Page({
       })
       return;
     }
-    console.log(this.data.index);
+    // console.log(this.data.index);
+    const ind = parseInt(this.data.index) + 1;
     wx.navigateTo({
-      url: '/pages/core/dt/detail/index?tk=' + this.data.selectQuestionMenu
+      url: '/pages/core/dt/detail/index?tk=' + ind
     })
   }
 })

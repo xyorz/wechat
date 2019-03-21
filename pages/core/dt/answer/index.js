@@ -45,107 +45,44 @@ Page({
   },
 
   onLoad(e) {
-    // var that = this;
-    // // 后台搞到时间
-    // wx.u.getSetting().then(res1 => {
-    //   var time = 0;
-    //   for (let i in res1.result) {
-    //     if (res1.result[i].key == 'time') {
-    //       time = res1.result[i].value
-    //     }
-    //   }
-    //   //获取题目
-    //   wx.u.getQuestions(e.id).then(res => {
-    //     console.log(res.result);
-    //     // 搞到后台数据,把loading设置为false
-    //     this.setData({
-    //       loading:false,
-    //       result: res.result,
-    //       total: res.result.length,
-    //       menu:e.id,
-    //       questionMenu: e.questionMenu
-    //     })
-    //     //倒计时
-    //     var Countdown = new $wuxCountDown({
-    //       date: +(new Date) + 60000 * parseInt(time),
-    //       render(date) {
-    //         const min = this.leadingZeros(date.min, 2) + ':'
-    //         const sec = this.leadingZeros(date.sec, 2) + ''
-    //         //答题时间结束
-    //         if (date.min === 0 && date.sec === 0) {
-    //           console.log("时间结束")
-    //           that.handleClick1();
-    //         }
-    //         this.setData({
-    //           Countdown: min + sec,
-    //         })
-    //       }
-    //     })
-
-    //     this.setThisData(0)
-    //   })
-    // });
-
-
-    // 来模拟数据
-    this.setData({
-      loading:false,
-      type: 1,
-      index: 1,
-      result: [
-        {
-          judge: 0, type: '1', title: "标题",choseList: [
-            { id: 0, isChose: true, item: "sssss" },
-            { id: 1, isChose: false, item: "xxxxx" },
-          ]
-        },
-        {
-          judge: 0, type: '1', title: "标题",choseList: [
-            { id: 0, isChose: true, item: "sssss" },
-            { id: 1, isChose: false, item: "xxxxx" },
-          ]},
-        {
-          judge: 0, type: '1', title: "标题",choseList: [
-            { id: 0, isChose: true, item: "sssss" },
-            { id: 1, isChose: false, item: "xxxxx" },
-          ]
-        },
-        {
-          judge: 0, type: '1', title: "标题",choseList: [
-            { id: 0, isChose: true, item: "sssss" },
-            { id: 1, isChose: false, item: "xxxxx" },
-          ]
-        },
-        {
-          judge: 0, type: '1', title: "标题",choseList: [
-            { id: 0, isChose: true, item: "sssss" },
-            { id: 1, isChose: false, item: "xxxxx" },
-          ]
-        },
-        {
-          judge: 0, type: '1', title: "标题",choseList: [
-            { id: 0, isChose: true, item: "sssss" },
-            { id: 1, isChose: false, item: "xxxxx" },
-          ]
-        },
-        {
-          judge: 0, type: '1', title: "标题",choseList: [
-            { id: 0, isChose: true, item: "sssss" },
-            { id: 1, isChose: false, item: "xxxxx" },
-          ]
-        },
-      ],
-      total: 100,
-      menu: 10,
-      // questionMenu = result[i]
-      questionMenu: "",
-      questionInfo: { judge: 0, type: '1', title: "标题", 
-        choseList: [
-          {id: 0, isChose: true, item: "sssss" },
-          {id: 1, isChose: false, item: "xxxxx" },
-        ]
+    let _this = this;
+    console.log(e.id)
+    wx.request({
+      url: `https://hdumanagernews.applinzi.com/dati/questioninfo.php?type=infosearch&list_id=${e.id}`,
+      method: 'GET',
+      success: function(res){
+        if(res.statusCode==200&&res.data){
+          let resList = [];
+          const d = res.data;
+          for(let i in d){
+            resList.push({
+              judge: 0,
+              type: '1',
+              title: d[i].title,
+              choseList: [
+                { id: 0, isChose: d[i].right_nswer == 'A' ? true : false, item: d[i].choseListA },
+                { id: 0, isChose: d[i].right_nswer == 'B' ? true : false, item: d[i].choseListB },
+                { id: 0, isChose: d[i].right_nswer == 'C' ? true : false, item: d[i].choseListC },
+                { id: 0, isChose: d[i].right_nswer == 'D' ? true : false, item: d[i].choseListD },
+              ],
+            })
+          }
+          console.log(resList)
+          _this.setData({
+            menu: 10,
+            index: 1,
+            type: 1,
+            loading: false,
+            result: resList,
+            total: e.total,
+            questionMenu: "",
+            questionInfo: resList[0]
+          })
+        }
       }
     })
+
+
     var time = 45;
     var Countdown = new $wuxCountDown({
       date: +(new Date) + 60000 * parseInt(time),
@@ -412,6 +349,16 @@ Page({
     //   }  
     // })
 
+    console.log(this.data.result)
+    let r = this.data.result;
+    let judges = '';
+    for (let i in r){
+      judges += r[i].judge?'1':'0';
+    }
+    wx.setStorage({
+      key: 'judges',
+      data: judges,
+    })
     // 总之先模拟一个页面跳转
     wx.navigateTo({
       url: '/pages/core/dt/history/index',

@@ -47,7 +47,7 @@ Page({
         id = this.data.id || app._user.we.info.id;
     return {
       title: name + '的课表',
-      desc: 'We重邮 - 课表查询',
+      desc: '杭电管家 - 课表查询',
       path: '/pages/core/kb/kb?id='+id+'&name='+name
     };
   },

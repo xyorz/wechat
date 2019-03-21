@@ -272,11 +272,6 @@ Page({
       // url: app._server + '/api/get_student_info.php',
       url: app._server + '/get_student_info/',
       method: 'POST',
-      // data: app.key({
-        // openid: app._user.openid,
-        // key: inputValue,
-        // page: that.data.main.page
-      // }),
       data: {
         openid: app._user.openid,
         key: inputValue,
@@ -311,6 +306,9 @@ Page({
 
   onLoad: function(options){
     var _this = this;
+    this.setData({
+      user: app._user
+    })
     app.loginLoad(function(){
       _this.loginHandler.call(_this, options);
     });
