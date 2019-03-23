@@ -28,7 +28,7 @@
                                 {{item.course}}
                             </view>
                             <view class="ks-hd-other">
-                                {{item.countdown}}<text class="ks-hd-place">{{item.place}}</text>
+                                {{item.countdown}}<text class="ks-hd-place">{{item.room}}</text>
                             </view>
                         </view>
                         <image class="ks-item-icon" src="/images/core/common/down.png"></image>
@@ -36,11 +36,11 @@
                     <view class="ks-detail">
                         <view class="ks-detail-item">
                           <text class="ks-detail-label">日期</text>
-                          <text class="ks-detail-content">{{item.date}}（{{item.week}}周-周{{item.day}}）</text>
+                          <text class="ks-detail-content">{{item.week}} - {{item.dsz}} - 周{{item.day}}</text>
                         </view>
                         <view class="ks-detail-item">
                           <text class="ks-detail-label">时间</text>
-                          <text class="ks-detail-content">{{item.time}}（{{item.lesson}}）</text>
+                          <text class="ks-detail-content">{{item.lesson}}</text>
                         </view>
                         <view class="ks-detail-item">
                           <text class="ks-detail-label">地点</text>

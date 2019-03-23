@@ -64,17 +64,20 @@ Page({
     function ksRender(list){
       if(!list || !list.length){
         _this.setData({
-          remind: '无考试安排'
+          remind: '无课程信息'
         });
         return false;
       }
       var days = ['一','二','三','四','五','六','日'];
+      var lessons = ['1-2节', '3-4节', '3-5节', '6-7节', '6-8节', '7-8节', '9-10节', '9-11节'];
       for (var i = 0, len = list.length; i < len; ++i) {
         list[i].open = false;
+        list[i].course = list[i].name;
         list[i].index = i;
-        list[i].day = days[list[i].day - 1];
-        list[i].time = list[i].time.trim().replace('—','~');
-        list[i].lesson = list[i].lesson.replace(',','-');
+        list[i].week = `${list[i].ks}-${list[i].js}周`;
+        list[i].dsz = `${list[i].dsz==0?'双':list[i].dsz==1?'单':'全部'}周`;
+        list[i].day = `${days[list[i].xq]}`
+        list[i].lesson = lessons[list[i].sj];
       }
       list[0].open = true;
       _this.setData({
@@ -85,7 +88,7 @@ Page({
     wx.showNavigationBarLoading();
     wx.request({
       // url: app._server + "/api/get_ks.php",
-      url: app._server + "/get_ks/",
+      url: app._server + "/get_lessons_by_teacherid/",
       method: 'POST',
       // data: app.key(data),
       data: {
@@ -93,7 +96,8 @@ Page({
       },
       success: function(res) {
         if (res.data && res.data.status === 200){
-          var list = res.data.data;
+          var list = res.data.data.list;
+          console.log(list)
           if(list) {
             if(!options.name){
               //保存考试缓存

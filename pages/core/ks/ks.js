@@ -61,7 +61,6 @@ Page({
     if(app._user.teacher && !options.name){ data.type = 'teacher'; }
 
     //判断并读取缓存
-    if(app.cache.ks && !options.name){ ksRender(app.cache.ks); }
     function ksRender(list){
       if(!list || !list.length){
         _this.setData({
@@ -74,7 +73,7 @@ Page({
         list[i].open = false;
         list[i].index = i;
         list[i].day = days[list[i].day - 1];
-        list[i].time = list[i].time.trim().replace('—','~');
+        // list[i].time = list[i].time.trim().replace('—','~');
         list[i].lesson = list[i].lesson.replace(',','-');
         //倒计时提醒
         if(list[i].days > 0){
@@ -112,16 +111,12 @@ Page({
       success: function(res) {
         if (res.data && res.data.status === 200){
           var list = res.data.data;
+          console.log(res.data.data)
           if(list) {
-            if(!options.name){
-              //保存考试缓存
-              app.saveCache('ks', list);
-            }
             ksRender(list);
           } else { _this.setData({ remind: '暂无数据' }); }
 
         } else {
-          app.removeCache('ks');
           _this.setData({
             remind: res.data.message || '未知错误'
           });
